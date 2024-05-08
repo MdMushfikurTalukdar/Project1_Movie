@@ -36,35 +36,57 @@ class MovieApp {
 
     }
 
+    public User findUserByEmail(String email) {
+        for (User user : users) {
+            if (user.getEmail().equalsIgnoreCase(email)) {
+                return user;
+            }
+        }
+        return null;  // User not found
+    }
+
+    public Movie findMovieByTitle(String title) {
+        for (Movie movie : movies) {
+            if (movie.getTitle().equalsIgnoreCase(title)) {
+                return movie;
+            }
+        }
+        return null;  // Movie not found
+    }
+
+
     public void searchMovies(String query) {
         System.out.println("Search results:");
         for (Movie movie : movies) {
-            if (movie.getTitle().toLowerCase().contains(query.toLowerCase()) ||
-                    movie.getCast().contains(query.toLowerCase()) ||
-                    movie.getCategory().toLowerCase().contains(query.toLowerCase())) {
+            if (movie.getTitle().toLowerCase().contains(query.toLowerCase())) {
                 System.out.println(movie);
+            } else {
+                boolean foundInCast = false;
+                for (String actor : movie.getCast()) {
+                    if (actor.toLowerCase().contains(query.toLowerCase())) {
+                        foundInCast = true;
+                        break;
+                    }
+                }
+                if (foundInCast) {
+                    System.out.println(movie);
+                }
             }
         }
     }
+
 
     public void displayMovieDetails(Movie movie) {
         System.out.println(movie);
     }
 
-    public void addFavorite(User user, String query) {
+    public void addFavorite(User user, Movie movie) {
 //        for (User user : user) {
 //            if (users.getEmail().toLowerCase().contains(user.toLowerCase())) {
 //                users.addFavorite(movie);
 //            }
 //        }
-        for (Movie movie : movies) {
-            if (movie.getTitle().toLowerCase().contains(query.toLowerCase()) ||
-                    movie.getCast().contains(query.toLowerCase()) ||
-                    movie.getCategory().toLowerCase().contains(query.toLowerCase())) {
-                user.addFavorite(movie);
-            }
-        }
-
+        user.addFavorite(movie);
         System.out.println("Movie added to favorites.");
     }
 

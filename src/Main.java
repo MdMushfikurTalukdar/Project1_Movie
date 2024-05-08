@@ -31,34 +31,23 @@ public class Main {
                 System.out.print("Enter search query: ");
                 String query = scanner.nextLine();
                 movieApp.searchMovies(query);
-                System.out.println("");
-                System.out.println("1. Add to Favorites");
-                System.out.println("2. Remove from Favorites");
-                System.out.println("0. Exit");
-                System.out.print("Enter your choice: ");
-                int choiceNew = scanner.nextInt();
-                scanner.nextLine();
-                if(choiceNew==1){
-                    System.out.print("Enter User email : ");
-                    String userName = scanner.nextLine();
-                    User user = new user(userName);
-                    movieApp.addFavorite(userName,query);
-                }
-                else if (choiceNew==2) {
-
-                }
-                else if (choiceNew==0) {
-                    System.out.println("Thank you for using Movie App. Goodbye!");
-                    System.exit(0);
-                }
-                else {
-                    System.out.println("Invalid choice. Please try again.");
-                }
             }
             else if (choice==3){
-                // Add to favorites
-                System.out.print("Enter ");
-                movieApp.addFavorite(,);
+                System.out.print("Enter your email address: ");
+                String email = scanner.nextLine();
+                System.out.print("Enter the title of the movie you want to add to favorites: ");
+                String movieTitle = scanner.nextLine();
+                User userToAddFavorite = movieApp.findUserByEmail(email);
+                if (userToAddFavorite != null) {
+                    Movie movieToAddFavorite = movieApp.findMovieByTitle(movieTitle);
+                    if (movieToAddFavorite != null) {
+                        movieApp.addFavorite(userToAddFavorite, movieToAddFavorite);
+                    } else {
+                        System.out.println("Movie not found.");
+                    }
+                } else {
+                    System.out.println("User not found.");
+                }
             }
             else if (choice==4){
                 // Remove from favorites
