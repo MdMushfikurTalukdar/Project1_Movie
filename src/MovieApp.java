@@ -40,5 +40,21 @@ class MovieApp {
         System.out.println(movie);
     }
 
+    public void addFavorite(User user, Movie movie) {
+        user.addFavorite(movie);
+        System.out.println("Movie added to favorites.");
+    }
+
+    public void removeFavorite(User user, Movie movie) {
+        user.removeFavorite(movie);
+        System.out.println("Movie removed from favorites.");
+    }
+
+    public void displayUserFavorites(User user) {
+        System.out.println("Your favorite movies:");
+        for (Movie movie : user.getFavorites()) {
+            System.out.println(movie);
+        }
+    }
 
 }
