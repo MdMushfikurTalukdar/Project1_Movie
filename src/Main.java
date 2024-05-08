@@ -31,9 +31,34 @@ public class Main {
                 System.out.print("Enter search query: ");
                 String query = scanner.nextLine();
                 movieApp.searchMovies(query);
+                System.out.println("");
+                System.out.println("1. Add to Favorites");
+                System.out.println("2. Remove from Favorites");
+                System.out.println("0. Exit");
+                System.out.print("Enter your choice: ");
+                int choiceNew = scanner.nextInt();
+                scanner.nextLine();
+                if(choiceNew==1){
+                    System.out.print("Enter User email : ");
+                    String userName = scanner.nextLine();
+                    User user = new user(userName);
+                    movieApp.addFavorite(userName,query);
+                }
+                else if (choiceNew==2) {
+
+                }
+                else if (choiceNew==0) {
+                    System.out.println("Thank you for using Movie App. Goodbye!");
+                    System.exit(0);
+                }
+                else {
+                    System.out.println("Invalid choice. Please try again.");
+                }
             }
             else if (choice==3){
                 // Add to favorites
+                System.out.print("Enter ");
+                movieApp.addFavorite(,);
             }
             else if (choice==4){
                 // Remove from favorites

@@ -25,6 +25,17 @@ class MovieApp {
         System.out.println("Registration successful!");
     }
 
+    public void exixtingUser(){
+        System.out.print("Enter your email address: ");
+        String email = scanner.nextLine();
+        for (User user : users) {
+            if (user.getEmail().toLowerCase().contains(email.toLowerCase())) {
+
+            }
+        }
+
+    }
+
     public void searchMovies(String query) {
         System.out.println("Search results:");
         for (Movie movie : movies) {
@@ -40,8 +51,20 @@ class MovieApp {
         System.out.println(movie);
     }
 
-    public void addFavorite(User user, Movie movie) {
-        user.addFavorite(movie);
+    public void addFavorite(User user, String query) {
+//        for (User user : user) {
+//            if (users.getEmail().toLowerCase().contains(user.toLowerCase())) {
+//                users.addFavorite(movie);
+//            }
+//        }
+        for (Movie movie : movies) {
+            if (movie.getTitle().toLowerCase().contains(query.toLowerCase()) ||
+                    movie.getCast().contains(query.toLowerCase()) ||
+                    movie.getCategory().toLowerCase().contains(query.toLowerCase())) {
+                user.addFavorite(movie);
+            }
+        }
+
         System.out.println("Movie added to favorites.");
     }
 
