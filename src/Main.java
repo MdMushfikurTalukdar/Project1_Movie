@@ -9,6 +9,11 @@ public class Main {
         movieApp.addMovie(new Movie("The Shawshank Redemption", List.of("Tim Robbins", "Morgan Freeman"), "Drama", "1994", 25000000));
         movieApp.addMovie(new Movie("The Godfather", List.of("Marlon Brando", "Al Pacino"), "Crime", "1972", 6000000));
         movieApp.addMovie(new Movie("The Dark Knight", List.of("Christian Bale", "Heath Ledger"), "Action", "2008", 185000000));
+        movieApp.addMovie(new Movie("The Matrix", List.of("Keanu Reeves", "Carrie-Anne Moss"), "Sci-Fi", "1999", 63000000));
+        movieApp.addMovie(new Movie("Inception", List.of("Leonardo DiCaprio", "Joseph Gordon-Levitt"), "Sci-Fi", "2010", 160000000));
+        movieApp.addMovie(new Movie("The Lord of the Rings: The Fellowship of the Ring", List.of("Elijah Wood", "Ian McKellen"), "Fantasy", "2001", 93000000));
+        movieApp.addMovie(new Movie("The Avengers", List.of("Robert Downey Jr.", "Chris Evans"), "Action", "2012", 220000000));
+
 
         Scanner scanner = new Scanner(System.in);
 
@@ -50,10 +55,31 @@ public class Main {
                 }
             }
             else if (choice==4){
-                // Remove from favorites
+                System.out.print("Enter your email address: ");
+                String email = scanner.nextLine();
+                System.out.print("Enter the title of the movie you want to remove from favorites: ");
+                String movieTitle = scanner.nextLine();
+                User userToRemoveFavorite = movieApp.findUserByEmail(email);
+                if (userToRemoveFavorite != null) {
+                    Movie movieToRemoveFavorite = movieApp.findMovieByTitle(movieTitle);
+                    if (movieToRemoveFavorite != null) {
+                        movieApp.removeFavorite(userToRemoveFavorite, movieToRemoveFavorite);
+                    } else {
+                        System.out.println("Movie not found.");
+                    }
+                } else {
+                    System.out.println("User not found.");
+                }
             }
             else if (choice==5){
-                // View favorites
+                System.out.print("Enter your email address: ");
+                String email = scanner.nextLine();
+                User userToViewFavorites = movieApp.findUserByEmail(email);
+                if (userToViewFavorites != null) {
+                    movieApp.displayUserFavorites(userToViewFavorites);
+                } else {
+                    System.out.println("User not found.");
+                }
             }
             else if (choice==6){
                 System.out.println("Thank you for using Movie App. Goodbye!");

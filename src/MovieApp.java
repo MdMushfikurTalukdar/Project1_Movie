@@ -96,9 +96,14 @@ class MovieApp {
     }
 
     public void displayUserFavorites(User user) {
-        System.out.println("Your favorite movies:");
-        for (Movie movie : user.getFavorites()) {
-            System.out.println(movie);
+        List<Movie> favorites = user.getFavorites();
+        if (favorites.isEmpty()) {
+            System.out.println("You have no favorite movies.");
+        } else {
+            System.out.println("Your favorite movies:");
+            for (Movie movie : favorites) {
+                System.out.println(movie.getTitle());
+            }
         }
     }
 
